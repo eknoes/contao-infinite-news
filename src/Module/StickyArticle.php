@@ -57,31 +57,7 @@ class StickyArticle extends \Contao\ModuleNews
      */
     protected function compile()
     {
-        $stickyIds = [];
-
-        $stickyArticles = new StickyArticle(new ModuleModel());
-        $stickyArticles->news_archives = $this->news_archives;
-        $stickyArticles->news_template = "news_latest_infinite";
-
-        $stickyArt = $stickyArticles->compileSticky();
-
-        foreach ($stickyArt as $sticky) {
-            $stickyIds[] = $sticky->id;
-        }
-
-        if (Input::get("sticky") == 1) {
-            $arr = $stickyArt;
-        }
-
-        foreach ($this->articles as $article) {
-            if (in_array(json_decode($article)->id, $stickyIds)) {
-                continue;
-            }
-            $arr[] = json_decode($article);
-        }
-
-
-        return json_encode(array("articles" => $arr, "sticky_ids" => $stickyIds));
+        // TODO: Implement compile() method.
     }
 }
 ?>
