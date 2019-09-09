@@ -2,16 +2,17 @@
 namespace Eknoes\ContaoInfiniteNews\Module;
 
 use Contao\Input;
-use Contao\ModuleModel;
+use Contao\ModuleNews;
 use Contao\NewsModel;
 use Contao\System;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 $arr = [];
 
 /*
  * Module Class for compiling StickyArticles
  */
-class StickyArticle extends \Contao\ModuleNews
+class StickyArticle extends ModuleNews
 {
     /*
      * Normally fetched from Database, so we have to add this
@@ -21,7 +22,6 @@ class StickyArticle extends \Contao\ModuleNews
     public function compileSticky()
     {
         $cols = ["tl_news.pid IN (" . implode(",", $this->news_archives) . ")", "tl_news.infinite_news_sticky='1'"];
-        System::log(print_r(NewsModel::findBy($cols, null), true), "test", TL_GENERAL);
 
         $sticky = NewsModel::findBy($cols, "1");
         if($sticky == null) {
@@ -57,7 +57,29 @@ class StickyArticle extends \Contao\ModuleNews
      */
     protected function compile()
     {
-        // TODO: Implement compile() method.
+        $stickyIds = [];
+
+        $this->news_template = "news_latest_infinite";
+
+        $stickyArt = $this->compileSticky();
+
+        foreach ($stickyArt as $sticky) {
+            $stickyIds[] = $sticky->id;
+        }
+
+        if (Input::get("sticky") == 1) {
+            $arr = $stickyArt;
+        }
+
+        foreach ($this->articles as $article) {
+            if (in_array(json_decode($article)->id, $stickyIds)) {
+                continue;
+            }
+            $arr[] = json_decode($article);
+        }
+
+
+        return new JSONResponse(array("articles" => $arr, "sticky_ids" => $stickyIds));
     }
 }
 ?>
