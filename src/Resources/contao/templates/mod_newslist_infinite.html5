@@ -1,5 +1,5 @@
 <?php
-use Contao\Model\Collection\ModuleModel;
+use Contao\ModuleModel;
 use Eknoes\ContaoInfiniteNews\Module\StickyArticle;
 
 $stickyIds = [];

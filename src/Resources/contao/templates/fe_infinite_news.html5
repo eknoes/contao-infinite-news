@@ -81,7 +81,7 @@
         callback = typeof callback !== 'undefined' ? callback : null;
         jQuery.ajax({
             method: 'GET',
-            url: '/SimpleAjaxFrontend.php?page_n<?= $this->moduleId ?>=' + page + (page === 1 ? "&sticky=1" : ""),
+            url: '{{ app.request.uri }}?page_n<?= $this->moduleId ?>=' + page + (page === 1 ? "&sticky=1" : ""),
             data: {
                 action: 'reload-element',
                 // The data- attribute is set automatically
