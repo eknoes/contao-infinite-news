@@ -1,5 +1,5 @@
 {
-    "name": "eknoes/ContaoInfiniteNews",
+    "name": "eknoes/contao-infinite-news",
     "type": "contao-bundle",
     "description": "Bundle to have an infinite newslist",
     "license": "LGPL-3.0-or-later",
