@@ -26,6 +26,7 @@ class InfiniteNewsModule extends ContentElement
      */
     protected function compile()
     {
+
         if (TL_MODE == 'BE') {
             $this->genBeOutput();
         } else {
