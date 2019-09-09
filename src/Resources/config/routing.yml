@@ -1,0 +1,6 @@
+app.ajax_tags:
+  path: /infinite_news/{page}
+  defaults:
+    _scope: frontend
+    _token_check: true
+    _controller: 'Eknoes\ContaoInfiniteNews\Controller\InfiniteNewsAjaxController'
