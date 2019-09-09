@@ -1,13 +1,8 @@
 <?php
 namespace Eknoes\ContaoInfiniteNews\Module;
 
-use Contao\Input;
 use Contao\ModuleNews;
 use Contao\NewsModel;
-use Contao\System;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
-$arr = [];
 
 /*
  * Module Class for compiling StickyArticles
@@ -57,29 +52,6 @@ class StickyArticle extends ModuleNews
      */
     protected function compile()
     {
-        $stickyIds = [];
-
-        $this->news_template = "news_latest_infinite";
-
-        $stickyArt = $this->compileSticky();
-
-        foreach ($stickyArt as $sticky) {
-            $stickyIds[] = $sticky->id;
-        }
-
-        if (Input::get("sticky") == 1) {
-            $arr = $stickyArt;
-        }
-
-        foreach ($this->articles as $article) {
-            if (in_array(json_decode($article)->id, $stickyIds)) {
-                continue;
-            }
-            $arr[] = json_decode($article);
-        }
-
-
-        return new JSONResponse(array("articles" => $arr, "sticky_ids" => $stickyIds));
     }
 }
 ?>
