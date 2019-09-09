@@ -83,9 +83,7 @@
             method: 'GET',
             url: '<?= $this->url ?>?page_n<?= $this->moduleId ?>=' + page + (page === 1 ? "&sticky=1" : ""),
             data: {
-                action: 'reload-element',
-                // The data- attribute is set automatically
-                element: 'mod::<?= $this->moduleId ?>'
+                ajax_reload_element: 'mod::<?= $this->moduleId ?>',
             }
         }).done(function (response, status, xhr) {
             console.log(response,status,xhr);
@@ -95,6 +93,7 @@
                     end = true;
                     return;
                 }
+
                 // Replace the DOM
                 for (i = 0; i < response.html.articles.length; i++) {
                     var item = response.html.articles[i];
