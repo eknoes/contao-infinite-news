@@ -1,0 +1,63 @@
+<?php if ($this->addImage) { ?>
+    <?php
+    $imgStyle = "";
+
+    /* Create image element */
+
+    $imgStart = '<figure class="image_container" style="' . ($this->margin ? $this->margin : "") . '">';
+    if ($this->href) {
+        $imgStart .= '<a href="' . $this->href . '"' . ($this->linkTitle ? "title=\"" . $this->linkTitle . "\"" : "") . ' ' . $this->attributes . '>';
+    }
+
+    $imgEnd = "";
+    if ($this->href) {
+        $imgEnd .= "</a>";
+    }
+
+
+    if ($this->caption) {
+        $imgEnd .= '<figcaption class="caption">' . $this->caption . '</figcaption>';
+    }
+
+    $imgEnd .= "</figure>"; ?>
+
+<?php }
+
+$metaText = "";
+if ($this->hasMetaFields) {
+    $metaText = "<time datetime='" . $this->datetime . "'>" . $this->parseDate("d M Y", $this->timestamp) . "</time>&nbsp;&nbsp;|&nbsp;&nbsp;";
+    if (strpos($this->archive->title, "Chair") === false) {
+        $metaText .= "Published in " . strtoupper($this->archive->title);
+    }
+}
+
+$image = "";
+if($this->addImage) {
+    $image = $imgStart . '<img src="' . $this->picture['img']['src'] . '" />' . $imgEnd;
+}
+
+$content = "";
+
+if ($this->text) {
+    $content = $this->text;
+}
+
+$content .= $this->teaser;
+
+if ($this->description) {
+    $content .= "<p class=\"more\">" .  $this->more . "</p>";
+}
+
+$result = json_encode([
+    "id" => $this->id,
+    "headline" => $this->linkHeadline,
+    "subheadline" => /* str_replace("!lbr!", "<br />", $this->subHeadline) */null,
+    "content" => $content,
+    "meta" => $metaText,
+    "image" => $image,
+    "wide_article" => $this->infinite_news_wide == "1",
+    "featured" => $this->featured == "1"
+]);
+
+echo $result;
+?>
