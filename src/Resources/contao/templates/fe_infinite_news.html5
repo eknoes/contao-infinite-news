@@ -93,6 +93,8 @@
                     end = true;
                     return;
                 }
+                console.log("Got data!");
+                console.log(response.html);
 
                 // Replace the DOM
                 for (i = 0; i < response.html.articles.length; i++) {
