@@ -15,8 +15,8 @@
         "contao/core-bundle": "4.4.*",
         "symfony/framework-bundle": "^3.3",
         "contao/news-bundle": "^4.4",
-        "richardhj/contao-ajax_reload_element": "^2.1"
-
+        "richardhj/contao-ajax_reload_element": "^2.1",
+          "ext-json": "*"
     },
     "conflict": {
         "contao/core": "*",

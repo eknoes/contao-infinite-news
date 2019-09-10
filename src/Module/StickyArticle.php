@@ -9,6 +9,8 @@ use Contao\NewsModel;
  */
 class StickyArticle extends ModuleNews
 {
+
+    public $news_template = "news_latest_infinite";
     /*
      * Normally fetched from Database, so we have to add this
      */
@@ -52,6 +54,32 @@ class StickyArticle extends ModuleNews
      */
     protected function compile()
     {
+
+    }
+
+    public function generate()
+    {
+        $stickyIds = [];
+        $articles = [];
+
+        if (\Input::get("sticky") == 1) {
+            $stickyArt = $this->compileSticky();
+
+            foreach ($stickyArt as $sticky) {
+                $stickyIds[] = $sticky->id;
+            }
+
+            $articles = $stickyArt;
+        }
+
+        foreach ($this->articles as $article) {
+            if (in_array(json_decode($article)->id, $stickyIds)) {
+                continue;
+            }
+            $articles[] = json_decode($article);
+        }
+
+        return json_encode(array("articles" => $articles, "sticky_ids" => $stickyIds));
     }
 }
 ?>
