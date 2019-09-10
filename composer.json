@@ -32,7 +32,12 @@
         "symfony/phpunit-bridge": "^3.2"
     },
     "extra": {
-        "contao-manager-plugin": "Eknoes\\ContaoInfiniteNews\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Eknoes\\ContaoInfiniteNews\\ContaoManager\\Plugin",
+        "contao": {
+            "sources": {
+                "src/Resources/public": "assets/eknoes-infinite-news"
+            }
+        }
     },
     "autoload": {
         "psr-4": {
