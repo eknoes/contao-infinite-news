@@ -18,7 +18,8 @@
 
             //Check if anchor is in view, if not append
             function anchorOrAppend() {
-                if (jQuery("#" + anchor).length === 0) {
+                var anchoredElements = jQuery("#" + anchor);
+                if (anchoredElements.length === 0) {
                     window.scrollTo(0, document.body.scrollHeight);
                     appendNewsBlock(infiniteNewsPage++, anchorOrAppend)
                 } else {
@@ -30,22 +31,17 @@
                     var og_title = jQuery("h2");
                     var og_description = jQuery(".infinite-article-content");
                     var og_image = jQuery("img");
-                    var current_item_title =  jQuery("#" + anchor).find(og_title).get(0).innerText;
-                    var current_og_description = jQuery("#" + anchor).find(og_description).get(0).innerText;
-                    var current_og_image = jQuery("#" + anchor).find(og_image).get(0).src;
-
-                    console.log(current_item_title);
-                    console.log(og_description);
-                    console.log(current_og_description);
-                    console.log(current_og_image);
+                    var current_item_title =  anchoredElements.find(og_title).get(0).innerText;
+                    var current_og_description = anchoredElements.find(og_description).get(0).innerText;
+                    var current_og_image = anchoredElements.find(og_image).get(0).src;
 
                     var m=document.getElementsByTagName('meta');
 
                     for(var c=0;c<m.length;c++) {
-                        if(m[c].name == 'og:title' || m[c].name == 'twitter:title') {
+                        if(m[c].name === 'og:title' || m[c].name === 'twitter:title') {
                             m[c].content = current_item_title;
                         }
-                        if(m[c].name == 'og:description' || m[c].name == 'twitter:description') {
+                        if(m[c].name === 'og:description' || m[c].name === 'twitter:description') {
                             m[c].content = current_og_description;
                         }
                     }
@@ -61,12 +57,6 @@
                     meta_twitter_image.property = "twitter:image";
                     meta_twitter_image.content = current_og_image;
                     document.getElementsByTagName('head')[0].appendChild(meta_twitter_image);
-
-                    //var MetaTag=document.createElement('meta');
-                    //MetaTag.name = "test";
-                    //MetaTag.property = "og:titletest";
-                    //MetaTag.content = "test";
-                   // document.getElementsByTagName('head')[0].appendChild(MetaTag);
                 }
             }
 
@@ -86,19 +76,19 @@
                 ajax_reload_element: 'mod::<?= $this->moduleId ?>',
             }
         }).done(function (response, status, xhr) {
-            console.log(response,status,xhr);
             loading = false;
             if (response.status === 'ok') {
                 if (response.html == null) {
                     end = true;
                     return;
                 }
-                console.log("Got data!");
-                console.log(response.html);
+
+                // Data is quite a lot escaped
+                response.html = JSON.parse(response.html);
 
                 // Replace the DOM
                 for (i = 0; i < response.html.articles.length; i++) {
-                    var item = response.html.articles[i];
+                    var item = JSON.parse(response.html.articles[i]);
                     if (item != null) {
                         jQuery("#infinite-news").append(createNewsElement(item.id, item.headline, item.subheadline, item.meta, item.content, item.image, item.wide_article, item.featured));
                         left = !left;
@@ -157,7 +147,6 @@
             subheadline + image + "<div class='infinite-article-content'>" + text + "</div></div>");
 
         obj.click(function() {
-            console.log("Click on: " + id);
             location.hash = "infinite-news-article-" + id;
         });
         return obj;
@@ -262,14 +251,9 @@
         margin-top: 0 !important;
     }
 </style>
-<script>
-    jQuery(function () {
-        jQuery("#infinite-news").before("<<?= $this->hl ?>><?= $this->headline ?></<?= $this->hl ?>>");
-    });
-</script>
 
+<<?= $this->hl ?>><?= $this->headline ?></<?= $this->hl ?>>
 <noscript>{{insert_module::<?= $this->fallbackModule ?>}}</noscript>
-
 <div id="infinite-news" class="row">
 </div>
 
