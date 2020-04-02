@@ -10,7 +10,7 @@
 
 namespace Eknoes\ContaoInfiniteNewsBundle\Tests;
 
-use Eknoes\ContaoInfiniteNews\ContaoInfiniteNewsBundle;
+use Eknoes\ContaoInfiniteNewsBundle\ContaoInfiniteNewsBundle;
 use PHPUnit\Framework\TestCase;
 
 class ContaoInfiniteNewsBundleTest extends TestCase
@@ -19,6 +19,6 @@ class ContaoInfiniteNewsBundleTest extends TestCase
     {
         $bundle = new ContaoInfiniteNewsBundle();
 
-        $this->assertInstanceOf('Eknoes\ContaoInfiniteNews\ContaoInfiniteNewsBundle', $bundle);
+        $this->assertInstanceOf('Eknoes\ContaoInfiniteNewsBundle\ContaoInfiniteNewsBundle', $bundle);
     }
 }

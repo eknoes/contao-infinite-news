@@ -1,5 +1,5 @@
 <?php
-namespace Eknoes\ContaoInfiniteNews\Module;
+namespace Eknoes\ContaoInfiniteNewsBundle\Module;
 
 use BackendTemplate;
 use Contao\ContentElement;
