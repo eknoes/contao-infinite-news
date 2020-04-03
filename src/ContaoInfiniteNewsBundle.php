@@ -8,7 +8,7 @@
  * @license LGPL-3.0-or-later
  */
 
-namespace Eknoes\ContaoInfiniteNews;
+namespace Eknoes\ContaoInfiniteNewsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
