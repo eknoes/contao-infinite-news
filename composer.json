@@ -12,13 +12,11 @@
     "require": {
         "php": "^5.6 || ^7.0",
         "contao/core-bundle": "^4.4",
-        "symfony/framework-bundle": "^4.4.*",
         "contao/news-bundle": "^4.4",
         "richardhj/contao-ajax_reload_element": "^2.1",
-          "ext-json": "*"
+        "ext-json": "*"
     },
     "conflict": {
-        "contao/core": "*",
         "contao/manager-plugin": "<2.0 || >=3.0"
     },
     "extra": {
@@ -32,11 +30,6 @@
     "autoload": {
         "psr-4": {
             "Eknoes\\ContaoInfiniteNewsBundle\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Eknoes\\ContaoInfiniteNewsBundle\\Tests\\": "tests/"
         }
     }
 }
