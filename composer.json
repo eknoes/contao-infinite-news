@@ -16,12 +16,6 @@
         "richardhj/contao-ajax_reload_element": "^2.1",
         "ext-json": "*"
     },
-    "conflict": {
-        "contao/manager-plugin": "<2.0 || >=3.0"
-    },
-    "require-dev": {
-        "contao/manager-plugin": "^2.0"
-    },
     "extra": {
         "contao-manager-plugin": "Eknoes\\ContaoInfiniteNewsBundle\\ContaoManager\\Plugin",
         "contao": {

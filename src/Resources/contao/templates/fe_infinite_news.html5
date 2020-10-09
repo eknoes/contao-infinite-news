@@ -71,7 +71,7 @@
         callback = typeof callback !== 'undefined' ? callback : null;
         jQuery.ajax({
             method: 'GET',
-            url: '<?= $this->url ?>?page_n<?= $this->moduleId ?>=' + page + (page === 1 ? "&sticky=1" : ""),
+            url: '{{env::request}}?page_n<?= $this->moduleId ?>=' + page + (page === 1 ? "&sticky=1" : ""),
             data: {
                 ajax_reload_element: 'mod::<?= $this->moduleId ?>',
             }
