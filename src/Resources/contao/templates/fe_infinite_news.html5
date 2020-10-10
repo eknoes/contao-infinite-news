@@ -192,8 +192,11 @@
         }
     }
 
-    div#infinite-news div.infinite-article-featured p.infinite-article-meta, div#infinite-news div.infinite-article-featured p.infinite-article-meta time,
-    div#infinite-news div.infinite-article-featured h2.infinite-news-article-headline, div#infinite-news div.infinite-article-featured h2.infinite-news-article-headline a {
+    div#infinite-news div.infinite-article-featured p.infinite-article-meta,
+    div#infinite-news div.infinite-article-featured p.infinite-article-meta time,
+    div#infinite-news div.infinite-article-featured h2.infinite-news-article-headline,
+    div#infinite-news div.infinite-article-featured h2.infinite-news-article-headline span,
+    div#infinite-news div.infinite-article-featured h2.infinite-news-article-headline a {
         color: white;
     }
 
@@ -243,7 +246,7 @@
         margin-bottom: 0;
     }
 
-    h2.infinite-news-article-headline a {
+    h2.infinite-news-article-headline a, h2.infinite-news-article-headline span {
         font: 20px/22px 'Roboto Condensed', sans-serif !important;
     }
 
