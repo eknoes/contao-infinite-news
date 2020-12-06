@@ -38,13 +38,9 @@ if($this->addImage) {
 
 $content = "";
 
-if ($this->text) {
-    $content = $this->text;
-}
-
 $content .= $this->teaser;
 
-if ($this->description) {
+if ($this->text) {
     $content .= "<p class=\"more\">" .  $this->more . "</p>";
 }
 
