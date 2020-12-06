@@ -36,11 +36,9 @@ if($this->addImage) {
     $image = $imgStart . '<img src="' . $this->picture['img']['src'] . '" />' . $imgEnd;
 }
 
-$content = "";
+$content = $this->teaser;
 
-$content .= $this->teaser;
-
-if ($this->text) {
+if ($this->text || $this->description) {
     $content .= "<p class=\"more\">" .  $this->more . "</p>";
 }
 
