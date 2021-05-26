@@ -227,10 +227,6 @@
         margin-top: 0;
     }
 
-    div#infinite-news figcaption.caption {
-        margin-bottom: 10px;
-    }
-
     div#infinite-news div.infinite-article-featured p.infinite-article-meta {
         padding-top: 6px;
         padding-bottom: 3px;
@@ -239,10 +235,6 @@
 
     p.infinite-article-meta, p.infinite-article-meta time {
         color: #275e88;
-        margin-bottom: 0;
-    }
-
-    div#infinite-news figure {
         margin-bottom: 0;
     }
 
