@@ -238,10 +238,6 @@
         margin-bottom: 0;
     }
 
-    h2.infinite-news-article-headline a, h2.infinite-news-article-headline span {
-        font: 20px/22px 'Roboto Condensed', sans-serif !important;
-    }
-
     h2.infinite-news-article-headline {
         margin-top: 0 !important;
     }
